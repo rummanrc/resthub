@@ -9,6 +9,7 @@ class ProfileController extends Controller
     public function profile($username)
     {
     	$user = User::where('username', $username)->first();
+    	
     	return view('profile', compact('user'));
     }
 }

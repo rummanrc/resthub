@@ -5,7 +5,7 @@
 <div class="row">
 
 	@forelse($results as $result)
-		<div class="container col-md-12 mt-3 bg-dark">
+		<div class="container col-md-12 mt-3 ">
 
 			<div class="card col-md-6 offset-md-3">
 				<div class="card-header"> {{ $result->name }} </div>

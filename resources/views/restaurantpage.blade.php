@@ -32,17 +32,17 @@
                         <div>
                             
                             <h3>Booking Time:</h3>
-                            <!--select id="time" class="form-control input-lg" required="required" form="timeform">
-                                <option value="12:00:00">12pm</option>
-                                <option value="01:00:00">1pm</option>
-                                <option value="02:00:00">2pm</option>
-                                <option value="03:00:00">3pm</option>
-                            </select-->
-                            <div class="col-md-12">
+                            <select id="time" name="time" class="form-control input-lg" required="required" form="timeform">
+                                <option value="12:00">12pm</option>
+                                <option value="01:00">1pm</option>
+                                <option value="02:00">2pm</option>
+                                <option value="03:00">3pm</option>
+                            </select>
+                            <!--div class="col-md-12">
                                     <div class="form-group">
                                         <input type="time" class="form-control input-lg" name="time" id="time" placeholder="Time" required="required" />
                                     </div>
-                                </div>
+                                </div-->
                             <h3>Booking Date:</h3>
                             <div class="col-md-12">
                                     <div class="form-group">
