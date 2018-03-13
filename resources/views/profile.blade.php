@@ -23,27 +23,13 @@
                             <i class="glyphicon glyphicon-envelope"></i>{{$user->email}}
                             <br />
                              <br>
-                            <i class="glyphicon glyphicon-globe"></i><a href="/">Homepage</a>
+                            
                             <br />
                              <br>
-                            <i class="glyphicon glyphicon-globe"></i>
-                            GET YOURSELF SOCIAL</p>
+                            </p>
                            </h3>
-                        <!-- Split button -->
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary btn-lg">
-                                Social</button>
-                            <button type="button" class="btn btn-primary dropdown-toggle btn-lg" data-toggle="dropdown">
-                                <span class="caret"></span><span class="sr-only">Social</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="https://www.twitter.com">Twitter</a></li>
-                                <li><a href="https://plus.google.com">Google </a></li>
-                                <li><a href="https://www.facebook.com">Facebook</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Github</a></li>
-                            </ul>
-                        </div>
+                        
+                        
                        
                     </div>
                 </div>

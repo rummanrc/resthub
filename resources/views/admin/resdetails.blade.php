@@ -41,9 +41,8 @@
                         <h1>
                             {{$res->name}}</h1>
                             <br>
-                          <h2>  
-                        <i class="glyphicon glyphicon-globe"></i>Type: {{$res->type}}
-                        </h2>
+                          <h3>{{$res->area}}</h3>
+                        
                          <br>
                         <h3>
                         <p>
@@ -53,8 +52,9 @@
                             
                             <br />
                              <br>
+                         </p>
                            </h3>
-                        </p>
+                           <p>{{$res->description}}</p>
                        
                     </div>
                 </div>

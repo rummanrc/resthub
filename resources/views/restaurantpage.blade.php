@@ -17,16 +17,21 @@
                           <h2>  
                         <i class="glyphicon glyphicon-globe"></i>Type: {{$res->type}}
                         </h2>
+                        <h3>{{$res->area}}</h3>
+                        
                          <br>
                         <h3>
                         <p>
                             <i class="glyphicon glyphicon-envelope"></i>{{$res->address}}
                             <br />
                              <br>
-                            <i class="glyphicon glyphicon-globe"></i><a href="/">Homepage</a>
+                            
                             <br />
                              <br>
+                         </p>
                            </h3>
+                           <p>{{$res->description}}</p>
+
                         <form method="POST" action="/reserve" id="timeform">
                             {{ csrf_field() }}
                         <div>
@@ -61,5 +66,44 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="panel col-md-8">
+<form method="POST" action="/comments" enctype="multipart/form-data">
+
+{{ csrf_field() }}
+    <div class="form-group">
+            <label class="col-md-3 control-label" name="resume">Write a review:</label>
+           
+    <TEXTAREA name="comment_body" class="form-control mb-3"></TEXTAREA>
+    <input type="hidden" name="restaurant_id" value="{{ $res->id }}">
+    <input type="submit" class="btn btn-success pull-right" value="Submit">
+</form>
+</div>
+
+
+</br></br>
+@foreach($res->comments as $comment)
+    <div class="">
+        <div class="card card border-secondary mb-3">
+        <div class="card-header bg-secondary text-white"> {{$comment->user->name}} </div>
+                <div class="card-body">
+                    {{ $comment->comment_body }}
+            </div>
+            <div class="card-footer">
+                {{ $comment->created_at }}
+                @if((Auth::user()->id) == $comment->user_id)
+                <form action="/comments/{{ $comment->id }}" class="" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button href="/comments/{{ $comment->id }}" class="btn btn-outline-danger btn-sm float-right">Delete this review</button>
+                </form>
+               @endif
+
+            </div>
+        </div>
+    </div>
+@endforeach
 
 @endsection

@@ -38,7 +38,7 @@
         <div class="col-md-6 col-md-offset-1 row">
 
             <div class="panel panel-primary">
-                <div class="panel-heading"> {{ $result->user->name }} </div>
+                <div class="panel-heading">Name: {{ $result->user->name }} email: {{ $result->user->email }} </div>
                 <div class="panel-body">
                 <span>{{ $result->timing }}</span>
                 </div>

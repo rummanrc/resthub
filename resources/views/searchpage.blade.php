@@ -14,6 +14,10 @@
 				</div>
 				<div class="card-footer">
 				 <a href="/restaurantpage/{{ $result->id }}" class="card-link">More Info about this restaurant</a>
+				 @if(($result->menu) != NULL)
+				 <a class="col-sm-4" href="/menufolder/{{$result->menu}}.pdf" ><div class="btn btn-success btn-sm">View Menu</div></a>
+				 <!--a class="col-sm-4" href="/menufolder/{{$result->menu}}.pdf" download="{{$result->menu}}.pdf"><div class="btn btn-success btn-sm">View Menu</div></a-->
+				 @endif
 				</div>
 			</div>
 		</div>

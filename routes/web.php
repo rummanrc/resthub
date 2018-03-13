@@ -33,12 +33,13 @@ Route::POST('admin-password/email','Admin\ForgotPasswordController@sendResetLink
 Route::GET('admin-password/reset','Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::POST('admin-password/reset','Admin\ResetPasswordController@reset');
 Route::GET('admin-password/reset/{token}','Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
-
- Route::POST('admin/register','Admin\RegisterController@register')->name('admin.register');
- Route::GET('admin/register',  'Admin\RegisterController@showRegistrationForm');
-
+Route::POST('admin/register','Admin\RegisterController@register')->name('admin.register');
+Route::GET('admin/register',  'Admin\RegisterController@showRegistrationForm');
 Route::GET('admin/bookinglist/{res_id}',  'AdminController@list');
 Route::GET('admin/resdetails/{res_id}',  'AdminController@resdetails');
 
 Route::GET('/admin/confirm/{id}', 'BookingController@destroy');
+
+
+Route::resource('comments', 'CommentController');
 
