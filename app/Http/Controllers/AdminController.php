@@ -40,5 +40,16 @@ class AdminController extends Controller
         return view('admin.resdetails', compact('res'));
     }
 
+    public function destroy($id)
+    {
+        $booking = Booking::where('id', $id)->first();
+        
+        $id=$booking->restaurant_id;
+        $booking->delete();
+        $list = Booking::where('restaurant_id', $id)->get();
+        
+        return view('admin.bookinglist', compact('list'));
+    }
+
 
 }

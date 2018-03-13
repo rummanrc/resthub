@@ -38,7 +38,7 @@ Route::GET('admin/register',  'Admin\RegisterController@showRegistrationForm');
 Route::GET('admin/bookinglist/{res_id}',  'AdminController@list');
 Route::GET('admin/resdetails/{res_id}',  'AdminController@resdetails');
 
-Route::GET('/admin/confirm/{id}', 'BookingController@destroy');
+Route::GET('/admin/confirm/{id}', 'AdminController@destroy');
 
 
 Route::resource('comments', 'CommentController');
