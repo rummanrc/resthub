@@ -18,6 +18,7 @@ class CreateBookingsTable extends Migration
             $table->dateTime('timing');
             $table->integer('user_id');
             $table->integer('restaurant_id');
+            $table->integer('status');
             $table->timestamps();
         });
     }

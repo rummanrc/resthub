@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 13, 2018 at 03:42 PM
+-- Generation Time: Mar 15, 2018 at 05:59 PM
 -- Server version: 5.7.14-log
 -- PHP Version: 7.2.0
 
@@ -42,7 +42,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `restaurant_id`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ad', 1, 'ad@ad.com', '$2y$10$U8RPKJyHNju5GMf.o4vJhuHM7LWKk3/ozviM7L/J4SEFJFIUl2nUK', NULL, '2018-03-13 07:20:46', '2018-03-13 07:20:46');
+(1, 'ad', 1, 'ad@ad.com', '$2y$10$uuhtdUn8.O6vgX0XoDVJlONQF7y.Vwz093puTICQoLisJFtQhacmu', NULL, '2018-03-15 07:35:29', '2018-03-15 07:35:29');
 
 -- --------------------------------------------------------
 
@@ -55,6 +55,7 @@ CREATE TABLE `bookings` (
   `timing` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -63,9 +64,11 @@ CREATE TABLE `bookings` (
 -- Dumping data for table `bookings`
 --
 
-INSERT INTO `bookings` (`id`, `timing`, `user_id`, `restaurant_id`, `created_at`, `updated_at`) VALUES
-(2, '2018-03-15 02:00:00', 1, 1, '2018-03-13 07:21:11', '2018-03-13 07:21:11'),
-(3, '2018-03-08 02:00:00', 1, 1, '2018-03-13 09:05:14', '2018-03-13 09:05:14');
+INSERT INTO `bookings` (`id`, `timing`, `user_id`, `restaurant_id`, `status`, `created_at`, `updated_at`) VALUES
+(8, '2018-03-22 02:00:00', 1, 1, 0, '2018-03-15 07:36:42', '2018-03-15 07:44:21'),
+(9, '2018-03-22 02:00:00', 1, 1, 0, '2018-03-15 07:36:43', '2018-03-15 07:39:13'),
+(12, '2018-03-14 12:00:00', 1, 1, 1, '2018-03-15 10:30:40', '2018-03-15 10:30:40'),
+(15, '2018-03-14 12:00:00', 1, 1, 0, '2018-03-15 10:33:24', '2018-03-15 10:33:48');
 
 -- --------------------------------------------------------
 
@@ -81,14 +84,6 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `comment_body`, `restaurant_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(5, 'asd', 1, 1, '2018-03-13 07:00:49', '2018-03-13 07:00:49'),
-(6, 'nice', 1, 1, '2018-03-13 09:07:10', '2018-03-13 09:07:10');
 
 -- --------------------------------------------------------
 
@@ -112,12 +107,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2018_03_05_123517_create_admins_table', 6),
 (15, '2018_03_05_175014_create_admins_table', 7),
 (16, '2018_03_05_175015_create_admin_password_resets_table', 7),
-(23, '2014_10_12_000000_create_users_table', 8),
-(24, '2014_10_12_100000_create_password_resets_table', 8),
-(25, '2018_02_22_164008_create_restaurants_table', 8),
-(26, '2018_02_25_172243_create_bookings_table', 8),
-(27, '2018_03_11_165221_create_admins_table', 8),
-(28, '2018_03_13_123416_create_comments_table', 9);
+(29, '2014_10_12_000000_create_users_table', 8),
+(30, '2014_10_12_100000_create_password_resets_table', 8),
+(31, '2018_02_22_164008_create_restaurants_table', 8),
+(32, '2018_02_25_172243_create_bookings_table', 8),
+(33, '2018_03_11_165221_create_admins_table', 8),
+(34, '2018_03_13_123416_create_comments_table', 8);
 
 -- --------------------------------------------------------
 
@@ -154,16 +149,16 @@ CREATE TABLE `restaurants` (
 --
 
 INSERT INTO `restaurants` (`id`, `name`, `type`, `address`, `area`, `menu`, `description`, `created_at`, `updated_at`) VALUES
-(1, '24x', 'Mexican', '1005 Kraig Mountain Apt. 544\nLake Theresa, CT 09610', 'Agrabad', '1', 'Vel commodi eum architecto. Veritatis est nemo fugiat quibusdam neque ipsam similique. Sit sapiente numquam dolores molestiae nostrum.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(2, '3Cc', 'Deshi', '4214 Gabriella Shores Apt. 786\nMajorchester, CT 05019-0761', '2 no. gate', NULL, 'Reprehenderit in perferendis debitis. Repudiandae consequuntur qui nam eveniet atque omnis voluptatum et. Deleniti minus aut est ipsam sint minus provident.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(3, '0Be', 'Deshi', '524 Walsh Curve\nPort Kenborough, IL 07132', 'Lalkhan Bazar', NULL, 'Laboriosam cupiditate ullam eum voluptatem ad voluptas. Magni temporibus delectus perspiciatis ut et soluta voluptas. Distinctio necessitatibus sed cupiditate commodi id dignissimos.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(4, 'CIo', 'Mexican', '30631 Rolfson Drive\nLuciousfurt, CT 35797', 'GEC', NULL, 'Hic velit dolor alias rerum. Labore eligendi quod quibusdam voluptas. Sed ipsum assumenda nisi quia veritatis et. Voluptas delectus voluptas voluptates consequatur cupiditate consectetur alias est.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(5, 'qVQ', 'Chinese', '9898 Oberbrunner Cove\nNew Abbey, ND 55425-5665', 'GEC', NULL, 'Quia est alias ad error soluta hic. Voluptas voluptatem iste id architecto iusto officia sed accusamus.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(6, 'cAJ', 'Indian', '233 Bashirian Street Apt. 772\nJairoshire, MS 95089', 'GEC', NULL, 'Fugit enim nihil assumenda quisquam at. Explicabo enim aliquam repellat repudiandae eum. Quia deserunt veritatis aut quibusdam dolor aperiam aut. Odit incidunt alias alias.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(7, '5er', 'Indian', '715 Oberbrunner Bypass\nLake Lornatown, IL 82622-7184', 'Lalkhan Bazar', NULL, 'Totam iure rem id quo odit dolorem. Autem sapiente ut ex. Necessitatibus quos omnis nemo atque occaecati.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(8, 'mHa', 'Deshi', '58401 Nolan Harbor\nEast Kim, MI 96953-6667', 'Lalkhan Bazar', NULL, 'Sunt sunt iste sunt cumque. Ut sed quis voluptates vitae animi. Aut fugit in voluptatum nesciunt quo nihil sapiente.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(9, 'FhZ', 'Deshi', '986 Roberts Mission\nLake Garland, MI 49371', 'Muradpur', NULL, 'Aut at quos quia et cum eaque. Aut itaque est sapiente error aliquam nemo accusamus. Amet est provident unde. Voluptatem totam beatae rerum aut.', '2018-03-13 03:42:34', '2018-03-13 03:42:34'),
-(10, 'LDC', 'Mexican', '982 Batz Wall Apt. 524\nNorth Jeffton, ME 10906', 'Agrabad', NULL, 'Consequatur quia nihil minima illum optio. Quasi iusto recusandae qui commodi. Doloribus magni quia voluptatibus dolore.', '2018-03-13 03:42:34', '2018-03-13 03:42:34');
+(1, 'vWK', 'Chinese', '82603 Jones Plain\nNew Penelope, PA 44181-3049', 'GEC', NULL, 'Hic illum reiciendis tenetur amet libero tempore est. Sint et praesentium minus eligendi. Et corrupti aspernatur reiciendis voluptas et. Quia ut et placeat quidem et quidem.', '2018-03-15 07:33:29', '2018-03-15 07:33:29'),
+(2, 'eoQ', 'Chinese', '659 Bartoletti Trace\nNew Taylor, DE 56282', 'Muradpur', NULL, 'Dolores qui nulla et est id eligendi. Est impedit et et voluptatem ea sapiente. Modi est et tempore harum. Assumenda ut repudiandae vel ut repellat nostrum qui.', '2018-03-15 07:33:29', '2018-03-15 07:33:29'),
+(3, 'pX0', 'Indian', '696 Price Creek\nWest Alberta, AK 58402-2894', 'Chawkbazar', NULL, 'Et veniam alias eaque pariatur consequatur. Temporibus autem neque exercitationem tempore eos dolor. Est et et illum dolor ut occaecati.', '2018-03-15 07:33:29', '2018-03-15 07:33:29'),
+(4, 'XQC', 'Deshi', '792 Nola Tunnel Suite 207\nWest Annalisefort, WI 36594-3874', '2 no. gate', NULL, 'Incidunt et earum ullam consectetur. Molestias ut repellat aut distinctio et iste in. Libero alias exercitationem sapiente voluptatem explicabo deleniti rerum.', '2018-03-15 07:33:29', '2018-03-15 07:33:29'),
+(5, 'NjP', 'Chinese', '48296 Erling Glen\nSallyport, WI 74009-4688', 'Muradpur', NULL, 'Alias dignissimos vero odit accusamus. Beatae recusandae cupiditate perferendis labore. Qui beatae sint blanditiis sapiente quia et. Et nihil cupiditate dolores repellendus omnis sint autem velit.', '2018-03-15 07:33:29', '2018-03-15 07:33:29'),
+(6, 'Eoi', 'Deshi', '987 Wunsch Terrace\nNorth Willhaven, ME 48113', 'Lalkhan Bazar', NULL, 'Consectetur quia laudantium accusantium eveniet aperiam. Molestiae alias neque odio laborum ratione sint. Rerum accusamus ducimus aut quos totam temporibus.', '2018-03-15 07:33:29', '2018-03-15 07:33:29'),
+(7, 'sAN', 'Chinese', '3919 Kemmer Freeway Suite 728\nCruickshankborough, WY 47402', 'Agrabad', NULL, 'Molestias recusandae hic rerum praesentium. Omnis ut voluptatem ut.', '2018-03-15 07:33:30', '2018-03-15 07:33:30'),
+(8, '4Rl', 'Deshi', '85965 Fidel Lake\nNikomouth, ND 07833-8641', 'Lalkhan Bazar', NULL, 'Soluta animi est vel eaque. Eos et ducimus et fuga. Consequatur officia dolorem qui corrupti quia.', '2018-03-15 07:33:30', '2018-03-15 07:33:30'),
+(9, 'JC1', 'Chinese', '4146 Eliseo Mall\nBoganhaven, NC 07532-9632', 'Lalkhan Bazar', NULL, 'Possimus sit similique qui eius odit sapiente sed. Autem nobis molestiae nemo voluptatem vel ut sint. Veniam maiores est perspiciatis. Omnis consequatur error ut voluptatem sunt.', '2018-03-15 07:33:30', '2018-03-15 07:33:30'),
+(10, '0cu', 'Mexican', '357 Sporer Meadow Apt. 913\nNew Yessenia, NH 58731', 'Chawkbazar', NULL, 'Sit sed sed officia. Eos molestias voluptas hic et et. Ex accusamus mollitia saepe ut porro. Esse rerum maxime accusantium dolore.', '2018-03-15 07:33:30', '2018-03-15 07:33:30');
 
 -- --------------------------------------------------------
 
@@ -187,8 +182,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'a', 'a', 'a@a.com', '$2y$10$lNUdRuVDa/GZCweoAE74BOOojUgWnvxuXNnuY.hP1T2vNjk.6o5ty', 'Xq4h7ALQ78PfYDqhLD1juQ9dUubv6J0wDiEBPCPergi8tA3XWjZnGvil9w8l', '2018-03-13 03:54:05', '2018-03-13 03:54:05'),
-(2, 'qwe', 'qwe', 'zahirulslam261@gmail.com', '$2y$10$MP4WYMn/P9w3nRAfsqn8tuMrZrXHr2eE3vGvnrMNOageJFYevCaYK', 'QbkZ2ie5S5R4HNisPDSTBlQoNDboN4Pm4OM1S2SLYCI2nEBGWz2LEaEmnYlf', '2018-03-13 07:01:10', '2018-03-13 07:01:10');
+(1, 'a', 'a', 'a@a.com', '$2y$10$huwNASg5NX.sbAOpLOlo6uquTEJAx7/nMYIMJhy5iegE25xa5y.8m', NULL, '2018-03-15 07:34:01', '2018-03-15 07:34:01');
 
 --
 -- Indexes for dumped tables
@@ -252,17 +246,17 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- AUTO_INCREMENT for table `restaurants`
 --
@@ -272,7 +266,7 @@ ALTER TABLE `restaurants`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

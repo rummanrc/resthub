@@ -28,14 +28,50 @@
                              <br>
                             </p>
                            </h3>
-                        
-                        
                        
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="container">
+  <h2>Bookings</h2>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>Booking ID</th>
+        <th>Restaurant</th>
+        <th>Timing</th>
+        <th>Status</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+@foreach($user->bookings as $booking)
+      <tr>
+        <td>{{$booking->id}}</td>
+        <td>{{$booking->restaurant->name}}</td>
+        <!--td>{{$booking->timing}}</td-->
+        <td>{{ Carbon\Carbon::parse($booking->timing)->format('d F Y H:i') }}</td>
+        @if($booking->status==0)
+        <td>Confirmed</td>
+        @else 
+        <td>Pending</td>
+        @endif
+        @if($booking->status==0)
+        <td>Already Completed</td>
+        @else 
+        <td><a href="/profile/deletebooking/{{$booking->id}}">Delete</a></td>
+        @endif
+        
+      </tr>
+@endforeach
+      
+    </tbody>
+  </table>
+</div>
 </div>
 
 @endsection

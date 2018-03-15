@@ -30,7 +30,12 @@ class AdminController extends Controller
 
     public function list($res_id)
     {
-        $list = Booking::where('restaurant_id', $res_id)->get();
+        //$list = Booking::where('restaurant_id', $res_id)->get();
+        $list = Booking::where([
+            ['restaurant_id','=', $res_id],
+            ['status', '=', '1'], //1 means pending
+        ])->get();
+
         return view('admin.bookinglist', compact('list'));
     }
 
@@ -45,10 +50,17 @@ class AdminController extends Controller
         $booking = Booking::where('id', $id)->first();
         
         $id=$booking->restaurant_id;
-        $booking->delete();
-        $list = Booking::where('restaurant_id', $id)->get();
+        $booking->status = 0;
+        $booking->save();
+        //$booking->delete();
+        //$list = Booking::where('restaurant_id', $id)->get();
+        $list = Booking::where([
+            ['restaurant_id','=', $id],
+            ['status', '=', '1'], //1 means pending
+        ])->get();
         
-        return view('admin.bookinglist', compact('list'));
+        //return view('admin.bookinglist', compact('list'));
+        return redirect()->route('bookinglist', ['res_id' => $id]);
     }
 
 

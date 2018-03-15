@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-Route::get('/profile/{username}', 'ProfileController@profile');
+Route::get('/profile/{username}', 'ProfileController@profile')->name('profile');
 Route::get('/restaurantpage/{id}', 'RestaurantController@respage');
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -35,11 +35,22 @@ Route::POST('admin-password/reset','Admin\ResetPasswordController@reset');
 Route::GET('admin-password/reset/{token}','Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 Route::POST('admin/register','Admin\RegisterController@register')->name('admin.register');
 Route::GET('admin/register',  'Admin\RegisterController@showRegistrationForm');
-Route::GET('admin/bookinglist/{res_id}',  'AdminController@list');
-Route::GET('admin/resdetails/{res_id}',  'AdminController@resdetails');
 
-Route::GET('/admin/confirm/{id}', 'AdminController@destroy');
+/*Route::GET('admin/bookinglist/{res_id}',  'AdminController@list')->name('bookinglist');
+Route::GET('admin/resdetails/{res_id}',  'AdminController@resdetails');
+Route::GET('/admin/confirm/{id}', 'AdminController@destroy');*/
+
+
+Route::GET('/profile/deletebooking/{id}', 'BookingController@destroy');
 
 
 Route::resource('comments', 'CommentController');
+
+
+Route::group(['middleware' => 'ad_acc'], function(){
+
+Route::GET('admin/bookinglist/{res_id}',  'AdminController@list')->name('bookinglist');
+Route::GET('admin/resdetails/{res_id}',  'AdminController@resdetails');
+});
+Route::GET('/admin/confirm/{id}', 'AdminController@destroy');
 
