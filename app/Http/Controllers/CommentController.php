@@ -38,7 +38,8 @@ class CommentController extends Controller
         $res = Restaurant::findOrFail($comment->restaurant_id);
         //return redirect()->route('home');
         //$comments = Book::find()->comments();  
-        return view('restaurantpage', compact('res'));
+        //return view('restaurantpage', compact('res'));
+        return redirect()->route('restaurantpage', ['res' => $res]);
     }
 
     
@@ -71,6 +72,7 @@ class CommentController extends Controller
         
         //return redirect()->route('home');
         //$comments = App\Book::find()->comments();  
-        return view('restaurantpage', compact('res'));
+        //return view('restaurantpage', compact('res'));
+        return redirect()->route('restaurantpage', ['res' => $res]);
     }
 }

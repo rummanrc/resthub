@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/profile/{username}', 'ProfileController@profile')->name('profile');
-Route::get('/restaurantpage/{id}', 'RestaurantController@respage');
+Route::get('/restaurantpage/{id}', 'RestaurantController@respage')->name('restaurantpage');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SearchController@typeahead'));
