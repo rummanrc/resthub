@@ -49,7 +49,7 @@
       </tr>
     </thead>
     <tbody>
-@foreach($user->bookings as $booking)
+@foreach($user->bookings->sortByDesc('id') as $booking)
       <tr>
         <td>{{$booking->id}}</td>
         <td>{{$booking->restaurant->name}}</td>

@@ -18,7 +18,9 @@ class BookingController extends Controller
         $booking->timing = $request->date." ".$request->time.":00";
         $booking->status = 1;  //1 means pending
         $booking->save();
-        return "booking successful";
+        $name= Auth::user()->username;
+        return redirect()->route('profile', ['user' => $name]);
+        //return "booking successful";
     }
 
     public function destroy($id)
